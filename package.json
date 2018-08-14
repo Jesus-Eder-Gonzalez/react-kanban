@@ -2,7 +2,18 @@
   "name": "react-kanban",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+git@github.com:Jesus-Eder-Gonzalez/react-kanban.git"
+  },
+  "author": "Jesus Gonzalez",
+  "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "bookshelf": "^0.13.3",
+    "express": "^4.16.3",
+    "knex": "^0.15.2",
+    "pg": "^7.4.3",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-scripts": "1.1.4"
@@ -12,5 +23,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.3"
   }
 }
