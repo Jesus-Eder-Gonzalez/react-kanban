@@ -1,5 +1,5 @@
 exports.up = function (knex, Promise) {
-  knex.schema.createTable('priorities', table => {
+  return knex.schema.createTable('priorities', table => {
     table
       .increments()
       .notNull()
@@ -11,5 +11,5 @@ exports.up = function (knex, Promise) {
 }
 
 exports.down = function (knex, Promise) {
-  knex.schema.dropTable('priorities')
+  return knex.schema.dropTable('priorities')
 }
