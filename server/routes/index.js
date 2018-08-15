@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const users = require('./users');
 
-router.get('/', (req, res) => {
-  console.log('smoketest!');
-  res.send({ message: 'smoketest' });
-});
+router.use('/users', users);
 
-module.exports=router;
+module.exports = router;
