@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { loadUsers } from '../../actions/users';
 import logo from '../../logo.svg';
 import './App.css';
 import KanBanBoard from '../KanBanBoard';
-import UserList from '../UserList';
+// import UserList from '../UserList';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      users: [],
       status: [],
       priority: [],
       cards: []
@@ -21,7 +22,7 @@ class App extends Component {
     axios
       .get('/api/users')
       .then(users => {
-        this.setState({ users: users.data });
+        this.props.loadUsers(users.data);
       })
       .catch(err => {
         console.log(err.message);
@@ -57,6 +58,7 @@ class App extends Component {
         console.log(err.message);
       });
   }
+
   render() {
     return (
       <div className="App">
@@ -67,11 +69,28 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <KanBanBoard users={this.state.users} status={this.state.status} />
+        <KanBanBoard users={this.props.users} status={this.state.status} />
         {/* <UserList users={this.state.users} /> */}
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    users: state.usersList
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loadUsers: users => {
+      dispatch(loadUsers(users));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
