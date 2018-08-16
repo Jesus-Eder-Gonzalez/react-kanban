@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import logo from '../../logo.svg';
 import './App.css';
+import KanBanBoard from '../KanBanBoard';
 import UserList from '../UserList';
 
 class App extends Component {
@@ -9,7 +10,10 @@ class App extends Component {
     super(props);
 
     this.state = {
-      users: []
+      users: [],
+      status: [],
+      priority: [],
+      cards: []
     };
   }
 
@@ -18,6 +22,36 @@ class App extends Component {
       .get('/api/users')
       .then(users => {
         this.setState({ users: users.data });
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+
+    axios
+      .get('/api/status')
+      .then(stats => {
+        console.log('status');
+        this.setState({ status: stats.data });
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+
+    axios
+      .get('/api/priorities')
+      .then(priorities => {
+        console.log('priorities');
+        this.setState({ priority: priorities.data });
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+
+    axios
+      .get('/api/cards')
+      .then(cards => {
+        console.log('cards');
+        this.setState({ cards: cards.data });
       })
       .catch(err => {
         console.log(err.message);
@@ -33,7 +67,8 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <UserList users={this.state.users} />
+        <KanBanBoard users={this.state.users} status={this.state.status} />
+        {/* <UserList users={this.state.users} /> */}
       </div>
     );
   }
