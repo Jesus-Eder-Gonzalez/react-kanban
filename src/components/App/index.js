@@ -7,6 +7,7 @@ import { loadStatus } from '../../actions/status';
 import './App.css';
 import KanBanBoard from '../KanBanBoard';
 import Header from '../Header';
+import ClickableButton from '../ClickableButton/ClickableButton';
 
 class App extends Component {
   constructor(props) {
@@ -18,20 +19,12 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.props.loadStatus();
+
     axios
       .get('/api/users')
       .then(users => {
         this.props.loadUsers(users.data);
-      })
-      .catch(err => {
-        console.log(err.message);
-      });
-
-    axios
-      .get('/api/status/cards')
-      .then(status => {
-        console.log('status');
-        this.props.loadStatus(status.data);
       })
       .catch(err => {
         console.log(err.message);
@@ -59,9 +52,10 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <div className="App">
-        <Header title="KANBAN BOARD" />
+        <Header title="KANBAN BOARD" label="+ NEW TASK"/> 
         <KanBanBoard users={this.props.users} status={this.props.status} />
       </div>
     );
@@ -84,8 +78,8 @@ const mapDispatchToProps = dispatch => {
     loadCards: cards => {
       dispatch(loadCards(cards));
     },
-    loadStatus: status => {
-      dispatch(loadStatus(status));
+    loadStatus: () => {
+      dispatch(loadStatus());
     }
   };
 };
