@@ -13,10 +13,9 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/cards').get((req, res) => {
-  return Status.fetchAll({ withRelated: ['cards.creator','cards.assigned', 'cards.priority'] })
+  return Status.fetchAll()
     .then(status => {
-      // console.log(status.toJSON()[0].cards);
-      // console.log(status.toJSON()[0].cards[0].creator);
+
       res.json(status);
     })
     .catch(err => {

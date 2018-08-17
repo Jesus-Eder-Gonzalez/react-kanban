@@ -18,7 +18,7 @@ const ClickableButton = props => {
   if (props.customStyles) {
     styles = Object.assign({}, styles, props.customStyles);
   }
-  console.log(props.label);
+
   if (!props.label) {
     styles = Object.assign({}, styles, { display: 'none' });
   } 

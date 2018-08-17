@@ -20,43 +20,34 @@ class App extends Component {
 
   componentDidMount() {
     this.props.loadStatus();
+    this.props.loadCards();
 
-    axios
-      .get('/api/users')
-      .then(users => {
-        this.props.loadUsers(users.data);
-      })
-      .catch(err => {
-        console.log(err.message);
-      });
+    // axios
+    //   .get('/api/users')
+    //   .then(users => {
+    //     this.props.loadUsers(users.data);
+    //   })
+    //   .catch(err => {
+    //     console.log(err.message);
+    //   });
 
-    axios
-      .get('/api/priorities')
-      .then(priorities => {
-        console.log('priorities');
-        this.setState({ priority: priorities.data });
-      })
-      .catch(err => {
-        console.log(err.message);
-      });
-
-    axios
-      .get('/api/cards')
-      .then(cards => {
-        console.log('cards');
-        this.props.loadCards(cards.data);
-      })
-      .catch(err => {
-        console.log(err.message);
-      });
+    // axios
+    //   .get('/api/priorities')
+    //   .then(priorities => {
+    //     console.log('priorities');
+    //     this.setState({ priority: priorities.data });
+    //   })
+    //   .catch(err => {
+    //     console.log(err.message);
+    //   });
   }
 
   render() {
-
+    console.log(this.props.cards);
     return (
       <div className="App">
         <Header title="KANBAN BOARD" label="+ NEW TASK"/> 
-        <KanBanBoard users={this.props.users} status={this.props.status} />
+        <KanBanBoard cards={this.props.cards} status={this.props.status} />
       </div>
     );
   }

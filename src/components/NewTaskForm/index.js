@@ -33,7 +33,7 @@ class NewCardForm extends Component {
       case 'assigned_to':
         this.setState({ assignedInput: event.target.value });
         break;
-      case 'priority':
+      case 'priority_id':
         this.setState({ priorityInput: event.target.value });
         break;
       default:
@@ -47,7 +47,8 @@ class NewCardForm extends Component {
     data.body = this.state.bodyInput;
     data.created_by = this.state.createdInput;
     data.assigned_to = this.state.assignedInput;
-    data.priorityInput = this.state.priorityInput;
+    data.priority_id = this.state.priorityInput;
+    data.status_id = 1;
     this.props.addCard(data);
     this.setState({
       titleInput: '',
@@ -60,7 +61,7 @@ class NewCardForm extends Component {
   }
 
   render() {
-    const customStyles = { backgroundColor: 'red' };
+    // const customStyles = { backgroundColor: 'red' };
     return (
       <div className="NewCardForm-container">
         <div>
@@ -105,11 +106,11 @@ class NewCardForm extends Component {
           />
         </div>
         <div>
-          <label htmlFor="priority">Priority:</label>
+          <label htmlFor="priority_id">Priority:</label>
           <input
             type="text"
-            name="priority"
-            id="priority"
+            name="priority_id"
+            id="priority_id"
             onChange={this.handleInputChange}
             value={this.state.priorityInput}
           />
