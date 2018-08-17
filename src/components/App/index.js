@@ -7,7 +7,7 @@ import { loadStatus } from '../../actions/status';
 import './App.css';
 import KanBanBoard from '../KanBanBoard';
 import Header from '../Header';
-import ClickableButton from '../ClickableButton/ClickableButton';
+import ClickableButton from '../ClickableButton';
 
 class App extends Component {
   constructor(props) {

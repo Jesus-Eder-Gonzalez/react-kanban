@@ -1,0 +1,26 @@
+.NewCardForm-container {
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  border-color: #de851b;
+  background-color: #ffedd8;
+  border-width: 1px;
+  height: 100%;
+  padding-top: 0.5rem;
+  width: 100%;
+  /* padding-left: 1rem; */
+  /* padding-right: 1rem; */
+}
+.NewCardForm-container > div {
+  display: flex;
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.NewCardForm-container > div > input {
+  width: 65%;
+}
+
+.NewCardForm-container > div > label {
+  width:25%;
+}

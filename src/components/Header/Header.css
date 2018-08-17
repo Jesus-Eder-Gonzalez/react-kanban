@@ -26,6 +26,6 @@
   font-family: Arial, Helvetica, sans-serif;
   color: #565c68;
   font-size: 0.75rem;
-  /* justify-content: center; */
-  /* align-items: center; */
+  justify-content: center;
+  align-items: center;
 }

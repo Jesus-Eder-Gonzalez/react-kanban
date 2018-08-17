@@ -1,6 +1,6 @@
 import React from 'react';
 
-let styles = {
+const style = {
   fontSize: '.75rem',
   backgroundColor: '#373b44',
   border: '1px solid white',
@@ -11,15 +11,18 @@ let styles = {
   display: 'block'
 };
 
+
 const ClickableButton = props => {
-  // if (props.customStyles) {
-  //   styles = Object.assign({}, styles, props.customStyles);
-  // }
-  console.log(props);
-  if (props.button !== 'Header') {
+  let styles = style;
+  
+  if (props.customStyles) {
+    styles = Object.assign({}, styles, props.customStyles);
+  }
+  console.log(props.label);
+  if (!props.label) {
     styles = Object.assign({}, styles, { display: 'none' });
   } 
-  console.log(styles);
+
   return (
     <button onClick={props.clickHandler} style={styles}>
       {props.label || 'Click Me'}{' '}
