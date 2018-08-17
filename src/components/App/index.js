@@ -2,19 +2,18 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { loadUsers } from '../../actions/users';
-import logo from '../../logo.svg';
+import { loadCards } from '../../actions/cards';
+import { loadStatus } from '../../actions/status';
 import './App.css';
 import KanBanBoard from '../KanBanBoard';
-// import UserList from '../UserList';
+import Header from '../Header';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      status: [],
-      priority: [],
-      cards: []
+      priority: []
     };
   }
 
@@ -29,10 +28,10 @@ class App extends Component {
       });
 
     axios
-      .get('/api/status')
-      .then(stats => {
+      .get('/api/status/cards')
+      .then(status => {
         console.log('status');
-        this.setState({ status: stats.data });
+        this.props.loadStatus(status.data);
       })
       .catch(err => {
         console.log(err.message);
@@ -52,7 +51,7 @@ class App extends Component {
       .get('/api/cards')
       .then(cards => {
         console.log('cards');
-        this.setState({ cards: cards.data });
+        this.props.loadCards(cards.data);
       })
       .catch(err => {
         console.log(err.message);
@@ -62,15 +61,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <KanBanBoard users={this.props.users} status={this.state.status} />
-        {/* <UserList users={this.state.users} /> */}
+        <Header title="KANBAN BOARD" />
+        <KanBanBoard users={this.props.users} status={this.props.status} />
       </div>
     );
   }
@@ -78,7 +70,9 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    users: state.usersList
+    users: state.usersList,
+    cards: state.cardsList,
+    status: state.statusList
   };
 };
 
@@ -86,6 +80,12 @@ const mapDispatchToProps = dispatch => {
   return {
     loadUsers: users => {
       dispatch(loadUsers(users));
+    },
+    loadCards: cards => {
+      dispatch(loadCards(cards));
+    },
+    loadStatus: status => {
+      dispatch(loadStatus(status));
     }
   };
 };

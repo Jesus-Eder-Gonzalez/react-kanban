@@ -1,0 +1,63 @@
+.done-Card {
+  display:flex;
+  flex-direction: column;
+  border-style: solid;
+  border-color: #EDECEC;
+  background-color:#F9F9F9;
+  border-width: 1px;
+  height:100%;
+  padding-top:.5rem;
+}
+
+.done-Card > * {
+  padding-left:1rem;
+  padding-right:1rem;
+  margin-top: 0.25rem;
+  margin-bottom:0.5rem;
+}
+
+.in_progress-Card {
+  display:flex;
+  flex-direction: column;
+  border-style: solid;
+  border-color: #709F42;
+  background-color:#DAF7A6;
+  border-width: 1px;
+  height:100%;
+  padding-top:.5rem;
+}
+
+.in_progress-Card > * {
+  padding-left:1rem;
+  padding-right:1rem;
+  margin-top: 0.25rem;
+  margin-bottom:0.5rem;
+}
+
+.queue-Card {
+  display:flex;
+  flex-direction: column;
+  border-style: solid;
+  border-color: #DE851B ;
+  background-color:#FFEDD8;
+  border-width: 1px;
+  height:100%;
+  padding-top:.5rem;
+}
+
+.queue-Card > * {
+  padding-left:1rem;
+  padding-right:1rem;
+  margin-top: 0.25rem;
+  margin-bottom:0.5rem;
+}
+
+.body {
+  margin-top: 0.1rem;
+  margin-left:.5rem;
+}
+
+.assigned {
+  margin-top: 0.1rem;
+  text-align: right;
+}
