@@ -7,7 +7,7 @@ import './Column.css';
 const Column = props => {
   let colHeader = props.status.map(status => {
 
-    let newForm = <NewTaskForm />;
+    let newForm = <NewTaskForm users={props.users} status={props.status}/>;
     return (
       <div className="Column">
         <Header

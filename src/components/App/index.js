@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { loadUsers } from '../../actions/users';
 import { loadCards } from '../../actions/cards';
@@ -7,7 +6,6 @@ import { loadStatus } from '../../actions/status';
 import './App.css';
 import KanBanBoard from '../KanBanBoard';
 import Header from '../Header';
-import ClickableButton from '../ClickableButton';
 
 class App extends Component {
   constructor(props) {
@@ -21,16 +19,8 @@ class App extends Component {
   componentDidMount() {
     this.props.loadStatus();
     this.props.loadCards();
-
-    // axios
-    //   .get('/api/users')
-    //   .then(users => {
-    //     this.props.loadUsers(users.data);
-    //   })
-    //   .catch(err => {
-    //     console.log(err.message);
-    //   });
-
+    this.props.loadUsers();
+    // this.props.loadPriorities();
     // axios
     //   .get('/api/priorities')
     //   .then(priorities => {
@@ -46,8 +36,8 @@ class App extends Component {
     console.log(this.props.cards);
     return (
       <div className="App">
-        <Header title="KANBAN BOARD" label="+ NEW TASK"/> 
-        <KanBanBoard cards={this.props.cards} status={this.props.status} />
+        <Header title="KANBAN BOARD" label="+ NEW TASK" />
+        <KanBanBoard cards={this.props.cards} status={this.props.status} users={this.props.users}/>
       </div>
     );
   }
@@ -63,8 +53,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadUsers: users => {
-      dispatch(loadUsers(users));
+    loadUsers: () => {
+      dispatch(loadUsers());
     },
     loadCards: () => {
       dispatch(loadCards());

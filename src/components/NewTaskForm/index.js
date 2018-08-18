@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import ClickableButton from '../ClickableButton';
-import { connect } from 'react-redux';
+import { connect, Consumer } from 'react-redux';
 import { addCard } from '../../actions/cards';
 import './NewTaskForm.css';
-class NewCardForm extends Component {
+import DropDownUser from './DropDownUser';
+
+class NewTaskForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,7 +15,6 @@ class NewCardForm extends Component {
       assignedInput: '',
       priorityInput: ''
     };
-
     this.focusInput = React.createRef();
     this.handleInputChange = this.handleInputChange.bind(this);
     this.addNewCard = this.addNewCard.bind(this);
@@ -31,6 +32,7 @@ class NewCardForm extends Component {
         this.setState({ createdInput: event.target.value });
         break;
       case 'assigned_to':
+        console.log('event-value-flag', event.target.value);
         this.setState({ assignedInput: event.target.value });
         break;
       case 'priority_id':
@@ -61,9 +63,26 @@ class NewCardForm extends Component {
   }
 
   render() {
+    let dropAssign = (
+      <DropDownUser
+        name="assigned_to"
+        value={this.state.assignedInput}
+        drop={this.props.users}
+        onChange={this.handleInputChange}
+      />
+    );
+    let dropCreated = (
+      <DropDownUser
+        name="created_by"
+        value={this.state.createdInput}
+        drop={this.props.users}
+        onChange={this.handleInputChange}
+      />
+    );
     // const customStyles = { backgroundColor: 'red' };
+
     return (
-      <div className="NewCardForm-container">
+      <div className="NewTaskForm-container">
         <div>
           <label htmlFor="title">Title:</label>
           <input
@@ -87,23 +106,11 @@ class NewCardForm extends Component {
         </div>
         <div>
           <label htmlFor="created_by">Created By:</label>
-          <input
-            type="text"
-            name="created_by"
-            id="created_by"
-            onChange={this.handleInputChange}
-            value={this.state.createdInput}
-          />
+          {dropCreated}
         </div>
         <div>
           <label htmlFor="assigned_to">Assigned To:</label>
-          <input
-            type="text"
-            name="assigned_to"
-            id="assigned_to"
-            onChange={this.handleInputChange}
-            value={this.state.assignedInput}
-          />
+          {dropAssign}
         </div>
         <div>
           <label htmlFor="priority_id">Priority:</label>
@@ -137,4 +144,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   null,
   mapDispatchToProps
-)(NewCardForm);
+)(NewTaskForm);
