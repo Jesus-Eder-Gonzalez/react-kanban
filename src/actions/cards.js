@@ -42,6 +42,7 @@ export const deleteCard = id => {
     return axios
       .delete(CARDS_URL, {data: {id}})
       .then(cards => {
+        console.log(cards.data);
         dispatch({
           type: DELETE_CARD,
           cards: cards.data

@@ -5,7 +5,7 @@ import './KanBanBoard.css';
 const KanBanBoard = props => {
   return (
     <div className="KanBanBoard">
-      <Column status={props.status} cards={props.cards} users={props.users}/>
+      <Column status={props.status} cards={props.cards}/>
     </div>
   );
 };

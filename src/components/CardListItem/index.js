@@ -56,7 +56,7 @@ class CardListItem extends Component {
   // const CardListItem = ({ name, title, body, priority_id, created_by, assigned_to }) => (
   render() {
     return (
-      <div className={`${this.state.name}-Card`}>
+      <div className={`${this.state.name}-Card`} key={this.state.card_id}>
         <h4> {this.state.title}</h4>
         <h5 className="body">{this.state.body} </h5>
         <h6>
@@ -79,7 +79,6 @@ class CardListItem extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     deleteCard: id => {
-      console.log('map', id);
       dispatch(deleteCard(id));
     }
   };

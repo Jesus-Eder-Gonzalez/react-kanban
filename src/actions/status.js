@@ -9,7 +9,6 @@ export const loadStatus = () => {
     return axios
       .get(FULL_STATUS_URL)
       .then(response => {
-        console.log(response);
         dispatch({
           type: LOAD_STATUS,
           status: response.data

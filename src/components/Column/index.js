@@ -6,8 +6,7 @@ import './Column.css';
 
 const Column = props => {
   let colHeader = props.status.map(status => {
-
-    let newForm = <NewTaskForm users={props.users} status={props.status}/>;
+    let newForm = <NewTaskForm />;
     return (
       <div className="Column">
         <Header
@@ -15,8 +14,10 @@ const Column = props => {
           title={status.name.toUpperCase().replace('_', ' ')}
           rank={status.rank}
         />
-        {console.log(props)}
-        <CardList cards={props.cards.filter(card => card.status_id === status.id)} name={status.name} />
+        <CardList
+          cards={props.cards.filter(card => card.status_id === status.id)}
+          name={status.name}
+        />
         {status.id === 1 ? newForm : ''}
       </div>
     );

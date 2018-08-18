@@ -1,16 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const DropDownPriority = props => {
-  console.log('drop', props.drop);
   if (!props.drop) {
     return;
   } else {
     let dropDownName = props.drop.map(element => {
-      return (
-        <option value={element.id}>{`${element.first_name} ${element.last_name}`}</option>
-      );
+      return <option key={element.id} value={element.id}>{element.name}</option>;
     });
-    return <select name="priority">{dropDownName}</select>;
+    return (
+      <select
+        id={props.name}
+        name={props.name}
+        onChange={props.onChange}
+        value={props.value}
+      >
+        <option value="" disabled />
+        {dropDownName}
+      </select>
+    );
   }
 };
 

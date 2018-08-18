@@ -4,11 +4,12 @@ import './CardList.css';
 
 const CardList = props => {
   return (
-    <div className='list'>
-      {props.cards.map((card, idx) => {
+    <div className="list">
+      {props.cards.map(card => {
         return (
           <CardListItem
-            card_id = {card.id}
+            key={card.id}
+            card_id={card.id}
             name={props.name}
             title={card.title}
             body={card.body}

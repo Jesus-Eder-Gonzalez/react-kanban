@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import ClickableButton from '../ClickableButton';
-import { connect, Consumer } from 'react-redux';
+import { connect } from 'react-redux';
 import { addCard } from '../../actions/cards';
+
 import './NewTaskForm.css';
 import DropDownUser from './DropDownUser';
+import DropDownPriority from './DropDownPriority';
 
 class NewTaskForm extends Component {
   constructor(props) {
@@ -63,6 +65,7 @@ class NewTaskForm extends Component {
   }
 
   render() {
+    console.log('check-state', this.props);
     let dropAssign = (
       <DropDownUser
         name="assigned_to"
@@ -76,6 +79,15 @@ class NewTaskForm extends Component {
         name="created_by"
         value={this.state.createdInput}
         drop={this.props.users}
+        onChange={this.handleInputChange}
+      />
+    );
+
+    let dropPriority = (
+      <DropDownPriority
+        name="priority_id"
+        value={this.state.priorityInput}
+        drop={this.props.priorities}
         onChange={this.handleInputChange}
       />
     );
@@ -114,13 +126,7 @@ class NewTaskForm extends Component {
         </div>
         <div>
           <label htmlFor="priority_id">Priority:</label>
-          <input
-            type="text"
-            name="priority_id"
-            id="priority_id"
-            onChange={this.handleInputChange}
-            value={this.state.priorityInput}
-          />
+          {dropPriority}
         </div>
 
         <ClickableButton
@@ -133,6 +139,15 @@ class NewTaskForm extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    users: state.usersList,
+    cards: state.cardsList,
+    status: state.statusList,
+    priorities: state.priorityList
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     addCard: card => {
@@ -142,6 +157,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(NewTaskForm);
