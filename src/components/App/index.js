@@ -66,8 +66,8 @@ const mapDispatchToProps = dispatch => {
     loadUsers: users => {
       dispatch(loadUsers(users));
     },
-    loadCards: cards => {
-      dispatch(loadCards(cards));
+    loadCards: () => {
+      dispatch(loadCards());
     },
     loadStatus: () => {
       dispatch(loadStatus());

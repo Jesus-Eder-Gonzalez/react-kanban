@@ -8,6 +8,7 @@ const CardList = props => {
       {props.cards.map((card, idx) => {
         return (
           <CardListItem
+            card_id = {card.id}
             name={props.name}
             title={card.title}
             body={card.body}

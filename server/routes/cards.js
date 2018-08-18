@@ -5,7 +5,7 @@ const Card = require('../db/models/Card');
 router
   .route('/')
   .get((req, res) => {
-    return Card.fetchAll({ withRelated: ['creator','assigned', 'priority'] })
+    return Card.fetchAll({ withRelated: ['creator', 'assigned', 'priority'] })
       .then(cards => {
         return res.json(cards);
       })
@@ -24,13 +24,26 @@ router
       assigned_to
     };
 
-    return new Card(card).save().then(response => {
-      return response.refresh({withRelated: ['creator','assigned', 'priority']});
-    }).then(card => {
-      return res.json(card);
-    });
+    return new Card(card)
+      .save()
+      .then(response => {
+        return response.refresh({ withRelated: ['creator', 'assigned', 'priority'] });
+      })
+      .then(card => {
+        return res.json(card);
+      });
+  })
+  .delete((req, res) => {
+    return new Card({ id: req.body.id })
+      .destroy()
+      .then(() => {
+        return Card.fetchAll({
+          withRelated: ['creator', 'assigned', 'priority']
+        });
+      })
+      .then(cards => {
+        return res.json(cards);
+      });
   });
 
-
-  
 module.exports = router;

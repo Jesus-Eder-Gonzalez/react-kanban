@@ -15,6 +15,7 @@ const Column = props => {
           title={status.name.toUpperCase().replace('_', ' ')}
           rank={status.rank}
         />
+        {console.log(props)}
         <CardList cards={props.cards.filter(card => card.status_id === status.id)} name={status.name} />
         {status.id === 1 ? newForm : ''}
       </div>

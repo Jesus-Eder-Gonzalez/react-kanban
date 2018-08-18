@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const LOAD_CARDS = 'LOAD_CARDS';
 export const ADD_CARD = 'ADD_CARD';
-
+export const DELETE_CARD = 'DELETE_CARD';
 const CARDS_URL = '/api/cards';
 
 export const loadCards = () => {
@@ -10,7 +10,6 @@ export const loadCards = () => {
     return axios
       .get(CARDS_URL)
       .then(cards => {
-        console.log(cards);
         dispatch({
           type: LOAD_CARDS,
           cards: cards.data
@@ -30,6 +29,22 @@ export const addCard = card => {
         dispatch({
           type: ADD_CARD,
           card: response.data
+        });
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+  };
+};
+
+export const deleteCard = id => {
+  return dispatch => {
+    return axios
+      .delete(CARDS_URL, {data: {id}})
+      .then(cards => {
+        dispatch({
+          type: DELETE_CARD,
+          cards: cards.data
         });
       })
       .catch(err => {

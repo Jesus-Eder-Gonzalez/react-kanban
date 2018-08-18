@@ -11,17 +11,16 @@ const style = {
   display: 'block'
 };
 
-
 const ClickableButton = props => {
   let styles = style;
-  
+
   if (props.customStyles) {
     styles = Object.assign({}, styles, props.customStyles);
   }
 
   if (!props.label) {
     styles = Object.assign({}, styles, { display: 'none' });
-  } 
+  }
 
   return (
     <button onClick={props.clickHandler} style={styles}>
