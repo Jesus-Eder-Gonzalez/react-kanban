@@ -24,7 +24,7 @@ const ClickableButton = props => {
 
   return (
     <button onClick={props.clickHandler} style={styles}>
-      {props.label || 'Click Me'}{' '}
+      {props.label || 'Click Me'}
     </button>
   );
 };

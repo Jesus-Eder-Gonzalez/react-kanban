@@ -15,9 +15,11 @@ const Column = props => {
           rank={status.rank}
         />
         <CardList
-          cards={props.cards.filter(card => card.status_id === status.id)}
+          cards={props.cards.filter(card => card.status_id === status.id).sort((a, b) => {
+            return b.priority_id > a.priority_id;
+          })}
           name={status.name}
-          status_id = {status.id}
+          status_id={status.id}
         />
         {status.id === 1 ? newForm : ''}
       </div>

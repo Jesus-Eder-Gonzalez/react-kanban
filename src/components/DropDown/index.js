@@ -1,16 +1,15 @@
 import React from 'react';
 import './DropDown.css';
 
-const DropDownUser = props => {
+const DropDown = props => {
   if (!props.drop) {
     return;
   } else {
-    /* dropDownOptions creates the options dynamically, these will fill the drop down selector, the only difference
-        between this and general drop down is the need to concat the first and last name when representing the selection */
+    /* dropDownOptions creates the options dynamically, these will fill the drop down selector */
     let dropDownOptions = props.drop.map(element => {
       return (
         <option key={element.id} value={element.id}>
-          {`${element.first_name} ${element.last_name}`}
+          {element.name}
         </option>
       );
     });
@@ -30,4 +29,4 @@ const DropDownUser = props => {
   }
 };
 
-export default DropDownUser;
+export default DropDown;

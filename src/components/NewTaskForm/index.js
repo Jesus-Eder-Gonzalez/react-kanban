@@ -5,7 +5,7 @@ import { addCard } from '../../actions/cards';
 
 import './NewTaskForm.css';
 import DropDownUser from '../DropDown/DropDownUser';
-import DropDownPriority from '../DropDown/DropDownPriority';
+import DropDown from '../DropDown';
 
 class NewTaskForm extends Component {
   constructor(props) {
@@ -34,7 +34,6 @@ class NewTaskForm extends Component {
         this.setState({ createdInput: event.target.value });
         break;
       case 'assigned_to':
-        console.log('event-value-flag', event.target.value);
         this.setState({ assignedInput: event.target.value });
         break;
       case 'priority_id':
@@ -65,8 +64,7 @@ class NewTaskForm extends Component {
   }
 
   render() {
-    console.log('check-state', this.props);
-    let dropAssign = (
+    let assignedDropDown = (
       <DropDownUser
         name="assigned_to"
         value={this.state.assignedInput}
@@ -74,7 +72,7 @@ class NewTaskForm extends Component {
         onChange={this.handleInputChange}
       />
     );
-    let dropCreated = (
+    let createdDropDown = (
       <DropDownUser
         name="created_by"
         value={this.state.createdInput}
@@ -83,8 +81,8 @@ class NewTaskForm extends Component {
       />
     );
 
-    let dropPriority = (
-      <DropDownPriority
+    let priorityDropDown = (
+      <DropDown
         name="priority_id"
         value={this.state.priorityInput}
         drop={this.props.priorities}
@@ -118,15 +116,15 @@ class NewTaskForm extends Component {
         </div>
         <div>
           <label htmlFor="created_by">Created By:</label>
-          {dropCreated}
+          {createdDropDown}
         </div>
         <div>
           <label htmlFor="assigned_to">Assigned To:</label>
-          {dropAssign}
+          {assignedDropDown}
         </div>
         <div>
           <label htmlFor="priority_id">Priority:</label>
-          {dropPriority}
+          {priorityDropDown}
         </div>
 
         <ClickableButton
