@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { addCard } from '../../actions/cards';
 
 import './NewTaskForm.css';
-import DropDownUser from './DropDownUser';
-import DropDownPriority from './DropDownPriority';
+import DropDownUser from '../DropDown/DropDownUser';
+import DropDownPriority from '../DropDown/DropDownPriority';
 
 class NewTaskForm extends Component {
   constructor(props) {

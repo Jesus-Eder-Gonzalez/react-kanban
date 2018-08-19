@@ -33,6 +33,35 @@ router
         return res.json(card);
       });
   })
+  .put((req, res) => {
+    console.log(req.body);
+    // let {
+    //   title,
+    //   body,
+    //   priority_id,
+    //   status_id,
+    //   created_by,
+    //   assigned_to,
+    //   id
+    // } = req.body;
+    // const card = {
+    //   id,
+    //   title,
+    //   body,
+    //   priority_id,
+    //   status_id,
+    //   created_by,
+    //   assigned_to
+    // };
+    return new Card(req.body)
+      .save()
+      .then(response => {
+        return response.refresh({ withRelated: ['creator', 'assigned', 'priority'] });
+      })
+      .then(card => {
+        return res.json(card);
+      });
+  })
   .delete((req, res) => {
     return new Card({ id: req.body.id })
       .destroy()
