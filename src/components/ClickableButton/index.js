@@ -21,9 +21,9 @@ const ClickableButton = props => {
   if (!props.label) {
     styles = Object.assign({}, styles, { display: 'none' });
   }
-
+  console.log(props.clickHandler);
   return (
-    <button onClick={props.clickHandler} style={styles}>
+    <button onClick={props.clickHandler} style={styles} name='clickable'>
       {props.label || 'Click Me'}
     </button>
   );

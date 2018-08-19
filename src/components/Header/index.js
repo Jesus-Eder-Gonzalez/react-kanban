@@ -8,7 +8,7 @@ const Header = props => {
     <header className={`${name}-header`}>
       <h1>{props.title}</h1>
       <div className="Header-Button">
-        <ClickableButton label={props.label} />
+        <ClickableButton label={props.label} clickHandler={props.onChange} />
       </div>
     </header>
   );

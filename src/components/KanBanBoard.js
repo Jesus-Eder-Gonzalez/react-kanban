@@ -7,7 +7,7 @@ const KanBanBoard = props => {
   console.log(props.cards);
   return (
     <div className="KanBanBoard">
-      <Column status={props.status} cards={props.cards}/>
+      <Column status={props.status} cards={props.cards} showTask={props.showTask}/>
     </div>
   );
 };

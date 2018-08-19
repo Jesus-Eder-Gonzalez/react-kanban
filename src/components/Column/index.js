@@ -7,6 +7,7 @@ import './Column.css';
 const Column = props => {
   let colHeader = props.status.map(status => {
     let newForm = <NewTaskForm />;
+    console.log('tasl:', props.showTask);
     return (
       <div className="Column">
         <Header
@@ -21,7 +22,7 @@ const Column = props => {
           name={status.name}
           status_id={status.id}
         />
-        {status.id === 1 ? newForm : ''}
+        {props.showTask ? (status.id === 1 ? newForm : '') : ''}
       </div>
     );
   });

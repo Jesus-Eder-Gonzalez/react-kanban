@@ -126,12 +126,13 @@ class NewTaskForm extends Component {
           <label htmlFor="priority_id">Priority:</label>
           {priorityDropDown}
         </div>
-
-        <ClickableButton
-          label="Add Task"
-          clickHandler={this.addNewCard}
-          customStyles={{ backgroundColor: 'grey' }}
-        />
+        <div className="button">
+          <ClickableButton
+            label="Add Task"
+            clickHandler={this.addNewCard}
+            customStyles={{ backgroundColor: 'grey', fontSize: '1rem', width: '90%', marginTop: '.5rem'}}
+          />
+        </div>
       </div>
     );
   }
