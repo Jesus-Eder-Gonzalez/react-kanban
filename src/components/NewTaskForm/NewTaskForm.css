@@ -1,0 +1,26 @@
+.NewTaskForm-container {
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  border-color: #de851b;
+  background-color: #ffedd8;
+  border-width: 1px;
+  height: auto;
+  padding-top: 0.5rem;
+  width: 100%;
+  /* padding-left: 1rem; */
+  /* padding-right: 1rem; */
+}
+.NewTaskForm-container > div {
+  display: flex;
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.NewTaskForm-container > div > input {
+  width: 65%;
+}
+
+.NewTaskForm-container > div > label {
+  width: 25%;
+}

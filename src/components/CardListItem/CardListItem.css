@@ -1,0 +1,79 @@
+.done-Card {
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  border-color: #d3d2d0;
+  background-color: #f9f9f9;
+  border-width: 1px;
+  height: 100%;
+  padding-top: 0.5rem;
+}
+
+.done-Card > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.in_progress-Card {
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  border-color: #709f42;
+  background-color: #daf7a6;
+  border-width: 1px;
+  height: 100%;
+  padding-top: 0.5rem;
+}
+
+.in_progress-Card > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.queue-Card {
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  border-color: #de851b;
+  background-color: #ffedd8;
+  border-width: 1px;
+  height: 100%;
+  padding-top: 0.5rem;
+}
+
+.queue-Card > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.body {
+  margin-top: 0.1rem;
+  margin-left: 0.5rem;
+}
+
+.assigned {
+  display: flex;
+  margin-top: 0.1rem;
+  text-align: right;
+  align-content: right;
+}
+.bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: -.75rem;
+}
+.flex-button {
+  display: flex;
+}
+
+/* select {
+  display:flex;
+  width:auto;
+} */
