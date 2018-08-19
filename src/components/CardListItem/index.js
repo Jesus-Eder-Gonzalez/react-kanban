@@ -10,25 +10,14 @@ class CardListItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      props: props,
       editable: false,
-      name: props.name,
-      title: props.title,
-      body: props.body,
-      created_by_name: props.created_by,
-      created_by_id: props.created_id,
-      assigned_to_name: props.assigned_to,
-      assigned_to_id: props.assigned_id,
-      priority_id: props.priority_id,
-      priority_name: props.priority_name,
       status_id: props.status_id,
       status_name: props.status_name,
-      card_id: props.card_id,
-      titleInput: props.title,
-      bodyInput: props.body,
-      createdInput: props.created_id,
-      assignedInput: props.assigned_id,
-      priorityInput: props.priority_id,
+      titleInput: props.card_info.title,
+      bodyInput: props.card_info.body,
+      createdInput: props.card_info.creator.id,
+      assignedInput: props.card_info.assigned.id,
+      priorityInput: props.card_info.priority.id,
       statusInput: props.status_id
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -63,14 +52,13 @@ class CardListItem extends Component {
   }
 
   destroyCard(e) {
-    console.log(this.state.card_id);
-    this.props.deleteCard(this.state.card_id);
+    this.props.deleteCard(this.props.card_info.id);
   }
 
   changeCard(e) {
     console.log('state',this.state);
     let card = {
-      id: this.state.card_id,
+      id: this.props.card_info.id,
       title: this.state.titleInput,
       body: this.state.bodyInput,
       created_by: this.state.createdInput,
@@ -87,7 +75,6 @@ class CardListItem extends Component {
     this.setState({ editable: true });
   }
 
-  // const CardListItem = ({ name, title, body, priority_id, created_by, assigned_to }) => (
   render() {
     let dropAssign = (
       <DropDownUser
@@ -122,6 +109,7 @@ class CardListItem extends Component {
         onChange={this.handleInputChange}
       />
     );
+
     return (
       <div className={`${this.state.status_name}-Card`} key={this.state.card_id}>
         {this.state.editable ? dropStatus : ''}
@@ -135,7 +123,7 @@ class CardListItem extends Component {
             value={this.state.titleInput}
           />
         ) : (
-          <h4> {this.props.title}</h4>
+          <h4> {this.props.card_info.title}</h4>
         )}
         {this.state.editable ? (
           <input
@@ -146,21 +134,21 @@ class CardListItem extends Component {
             value={this.state.bodyInput}
           />
         ) : (
-          <h5 className="body">{this.props.body} </h5>
+          <h5 className="body">{this.props.card_info.body} </h5>
         )}
         {this.state.editable ? (
           dropPriority
         ) : (
           <h6>
             PRIORITY:
-            {` ${this.props.priority_name.charAt(0).toUpperCase() +
-              this.props.priority_name.substr(1)}`}
+            {` ${this.props.card_info.priority.name.charAt(0).toUpperCase() +
+              this.props.card_info.priority.name.substr(1)}`}
           </h6>
         )}
         {this.state.editable ? (
           dropCreated
         ) : (
-          <h5>Assigned by: {this.props.created_by} </h5>
+          <h5>Assigned by: {`${this.props.card_info.creator.first_name}  ${this.props.card_info.creator.last_name}`} </h5>
         )}
         <div className="bottom">
           <div className="flex-button">
@@ -176,7 +164,7 @@ class CardListItem extends Component {
             {this.state.editable ? (
               ('Assigned To:', dropAssign)
             ) : (
-              <h5>Assigned To: {this.props.assigned_to} </h5>
+              <h5>Assigned To: {`${this.props.card_info.assigned.first_name}  ${this.props.card_info.assigned.last_name}`} </h5>
             )}
           </h5>
         </div>
